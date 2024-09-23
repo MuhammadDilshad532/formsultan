@@ -16,6 +16,7 @@ const Form = () => {
   });
 
   const [successMessage, setSuccessMessage] = useState("");
+  const [submittedData, setSubmittedData] = useState(null); 
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -51,6 +52,14 @@ const Form = () => {
 
     if (validateForm()) {
       setSuccessMessage("Your data is saved!");
+      setSubmittedData(formData); 
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     }
   };
 
@@ -150,6 +159,39 @@ const Form = () => {
           <span className="text-green-600 text-center block mt-4">{successMessage}</span>
         )}
       </form>
+
+    
+      {submittedData && (
+        <div className="mt-6">
+          <h2 className="text-xl text-white mb-4">Submitted Data</h2>
+          <table className="min-w-full text-white text-left ">
+            <thead className="text-white">
+              <tr>
+                <th className="py-2">Field</th>
+                <th className="py-2">Value</th>
+              </tr>
+            </thead>
+            <tbody className="text-white">
+              <tr>
+                <td className="py-2">First Name</td>
+                <td className="py-2">{submittedData.firstName}</td>
+              </tr>
+              <tr>
+                <td className="py-2">Last Name</td>
+                <td className="py-2">{submittedData.lastName}</td>
+              </tr>
+              <tr>
+                <td className="py-2">Email</td>
+                <td className="py-2">{submittedData.email}</td>
+              </tr>
+              <tr>
+                <td className="py-2">Password</td>
+                <td className="py-2">{submittedData.confirmPassword}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
