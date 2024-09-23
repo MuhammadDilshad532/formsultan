@@ -165,32 +165,27 @@ const Form = () => {
       {submittedData && (
         <div className="mt-6">
           <h2 className="text-xl text-white mb-4">Submitted Data</h2>
-          <table className="min-w-full text-white text-left ">
-            <thead className="text-white">
+          <table className="min-w-full border-collapse border border-gray-300 text-white text-left ">
+            <thead className=" border text-white">
               <tr>
-                <th className="py-2">Field</th>
-                <th className="py-2">Value</th>
+                <th className="py-2 border">First Name</th>
+                <th className="py-2 border">Last Name</th>
+                <th className="py-2 border">Email</th>
+                <th className="py-2 border">Password</th>
+                
               </tr>
             </thead>
-            <tbody className="text-white">
+            <tbody className="text-white ">
               <tr>
-                <td className="py-2">First Name</td>
-                <td className="py-2">{submittedData.firstName}</td>
-              </tr>
-              <tr>
-                <td className="py-2">Last Name</td>
-                <td className="py-2">{submittedData.lastName}</td>
-              </tr>
-              <tr>
-                <td className="py-2">Email</td>
-                <td className="py-2">{submittedData.email}</td>
-              </tr>
-              <tr>
-                <td className="py-2">Password</td>
-                <td className="py-2">{submittedData.confirmPassword}</td>
+                <td className="py-2 border">{submittedData.firstName}</td>
+                <td className="py-2 border">{submittedData.lastName}</td>
+                <td className="py-2 border">{submittedData.email}</td>
+                <td className="py-2 border">{submittedData.confirmPassword}</td>
               </tr>
             </tbody>
           </table>
+
+
         </div>
       )}
     </div>
