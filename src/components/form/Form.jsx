@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
-import "./app.css";
+
 
 const Form = () => {
   const [formData, setFormData] = useState({
