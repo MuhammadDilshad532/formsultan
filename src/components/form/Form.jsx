@@ -80,7 +80,7 @@ const Fields = [
         <h1 className="text-4xl text-white font-bold text-center mb-6">Form</h1>
         <form onSubmit={handleSubmit}>
          {
-          Fields.map((field , index) =>{
+          Fields.map((field , index) =>(
             <InputField 
             key={index}
             label={field.label}
@@ -91,7 +91,7 @@ const Fields = [
             error={field.error}
             icon={field.icon}
             />
-          })}
+          ))}
           <button
             type="submit"
             className="w-full mb-4 text-[18px] mt-6 rounded-full py-2 transition-colors duration-300 bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white"
