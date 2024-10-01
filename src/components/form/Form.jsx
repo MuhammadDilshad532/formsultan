@@ -63,7 +63,7 @@ const Form = () => {
       });
     }
   };
-const Fields = [
+const fields = [
   {label:"Your First Name" , type:"text" , name:"firstname"},
   {label:"Your Last Name" , type:"text" , name:"lastname"},
   {label:"Your Email" , type:"email" , name:"email", icon:<AiOutlineMail /> , error:errors.email },
@@ -80,7 +80,7 @@ const Fields = [
         <h1 className="text-4xl text-white font-bold text-center mb-6">Form</h1>
         <form onSubmit={handleSubmit}>
          {
-          Fields.map((field , index) =>(
+          fields.map((field , index) =>(
             <InputField 
             key={index}
             label={field.label}
