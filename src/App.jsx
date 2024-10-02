@@ -1,7 +1,6 @@
 import "./App.css";
-import SubmittedDataTable from "./components/SubmittedDataTable/SubmittedDataTable";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Form from "./components/form/Form";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -9,11 +8,11 @@ function App() {
       <div className="w-96 flex justify-center items-center ml-[40%] mt-10">
         <Routes>
           <Route path="/" element={<Form />} />
-          <Route path="/submitted-data" element={<SubmittedDataTable />} />
+          <Route path="/" element={<h1>Welcome! Please log in.</h1>} />
         </Routes>
       </div>
     </Router>
-  );  
+  );
 }
 
 export default App;
