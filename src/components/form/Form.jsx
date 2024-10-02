@@ -64,8 +64,8 @@ const Form = () => {
     }
   };
 const fields = [
-  {label:"Your First Name" , type:"text" , name:"firstname"},
-  {label:"Your Last Name" , type:"text" , name:"lastname"},
+  {label:"Your First Name" , type:"text" , name:"firstName"},
+  {label:"Your Last Name" , type:"text" , name:"lastName"},
   {label:"Your Email" , type:"email" , name:"email", icon:<AiOutlineMail /> , error:errors.email },
   {label:"Your Password" , type:"password" , name:"password" , icon:<AiOutlineLock />},
   {label:"Confirm Your password" , type:"password" , name:"confirmPassword" , error:errors.password},
