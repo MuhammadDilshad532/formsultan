@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import InputField from "../InputField/InputField";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +53,7 @@ const Form = () => {
         confirmPassword: "",
       };
 
-      resetItputFields();
+      resetInputFields();
     } else {
       alert(
         errors.password ||
@@ -74,7 +73,7 @@ const Form = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.terget;
+    const { name, value } = e.target;
     formData[name] = value;
   };
 
