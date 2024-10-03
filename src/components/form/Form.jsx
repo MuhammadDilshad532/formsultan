@@ -3,29 +3,25 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import InputField from "../InputField/InputField";
 import { useNavigate } from "react-router-dom";
 
+let formData = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+let errors = {
+  email: "",
+  password: "",
+};
+let submittedData = [];
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const Form = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [successMessage, setSuccessMessage] = useState("");
-  const [submittedData, setSubmittedData] = useState([]);
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const navigate = useNavigate();
-
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
-
     if (
       !formData.firstName ||
       !formData.lastName ||
@@ -34,53 +30,78 @@ const Form = () => {
     ) {
       isValid = false;
     }
-
     if (!emailRegex.test(formData.email)) {
       newErrors.email = "Please enter a valid email (e.g. abc@gmail.com)";
       isValid = false;
     }
-
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.password = "Passwords do not match";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
+    errors = { ...errors, ...newErrors };
     return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    errors = {
+      email: "",
+      password: "",
+    };
     if (validateForm()) {
-      setSuccessMessage("Your data is saved!");
-      setSubmittedData([...submittedData, formData]);
-      setFormData({
+      submittedData.push({ ...formData });
+      formData = {
         firstName: "",
         lastName: "",
         email: "",
         password: "",
         confirmPassword: "",
-      });
+      };
+
+      resetItputFields();
+    } else {
+      alert(
+        errors.password ||
+          errors.email ||
+          "Please fill out all fields correctly."
+      );
     }
   };
-
+  const resetInputFields = () => {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.value = ''; 
+    });
+  };
   const handleNext = () => {
-    
     navigate("/submitted-data", { state: { submittedData } });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.terget;
+    formData[name] = value;
   };
 
   const fields = [
     { label: "Your First Name", type: "text", name: "firstName" },
     { label: "Your Last Name", type: "text", name: "lastName" },
-    { label: "Your Email", type: "email", name: "email", icon: <AiOutlineMail />, error: errors.email },
-    { label: "Your Password", type: "password", name: "password", icon: <AiOutlineLock /> },
-    { label: "Confirm Your password", type: "password", name: "confirmPassword", error: errors.password , icon: <AiOutlineLock /> },
+    {
+      label: "Your Email",
+      type: "email",
+      name: "email",
+      icon: <AiOutlineMail />,
+      error: errors.email,
+    },
+    {
+      label: "Your Password",
+      type: "password",
+      name: "password",
+      icon: <AiOutlineLock />,
+    },
+    {
+      label: "Confirm Your password",
+      type: "password",
+      name: "confirmPassword",
+      error: errors.password,
+      icon: <AiOutlineLock />,
+    },
   ];
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   return (
     <>
@@ -112,15 +133,9 @@ const Form = () => {
           >
             Next
           </button>
-          {successMessage && (
-            <span className="text-green-600 text-center block mt-4">
-              {successMessage}
-            </span>
-          )}
         </form>
       </div>
     </>
   );
 };
-
 export default Form;
